@@ -8,28 +8,32 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        arr = []
         
-        temp = head
-        n = 0
-        while(temp):
-            val = temp.val
-            arr.append(val)
-            n+=1
-            temp = temp.next
+        slow,fast = head,head.next
         
-        i = 0
-        while(i<n):
-            if i%2==1:
-                end_val = arr.pop()
-                arr.insert(i,end_val)
-            i+=1
+        while(fast and fast.next):
+            slow = slow.next
+            fast = fast.next.next
         
-        curr = head
-        i = 0
-        while(curr):
-            curr.val = arr[i]
-            i+=1
-            curr = curr.next
-        return head
+        second = slow.next
+        prev = None
+        slow.next = None
+        #print(second)
         
+        while(second):
+            next = second.next
+            second.next = prev
+            prev = second
+            second = next
+        
+        second = prev
+        first = head
+        while(second):
+            next_first = first.next
+            next_second = second.next
+            
+            first.next = second
+            second.next = next_first
+            
+            first = next_first
+            second = next_second
