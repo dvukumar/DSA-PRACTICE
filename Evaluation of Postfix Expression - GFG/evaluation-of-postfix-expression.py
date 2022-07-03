@@ -7,8 +7,8 @@ class Solution:
         arr = []
         
         n = len(S)
-        if n<=2:
-            return -1
+        #if n<=2:
+            #return -1
         
         arr.append(S[0])
         arr.append(S[1])
