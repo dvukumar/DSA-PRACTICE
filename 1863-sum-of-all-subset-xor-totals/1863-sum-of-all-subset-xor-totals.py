@@ -4,10 +4,10 @@ class Solution:
         s = []
         result = 0
         
-        def subsets(s,i,nums,arr):
+        def subsets(s,i,nums):
             nonlocal result
             if i==len(nums):
-                arr.append(s)
+                arr.append(list(s))
                 subset_xor = 0
                 for n in s:
                     subset_xor ^= n
@@ -16,13 +16,14 @@ class Solution:
                 
             val = nums[i]
             s.append(val)
-            subsets(s,i+1,nums,arr)
+            subsets(s,i+1,nums)
             s.pop()
-            subsets(s,i+1,nums,arr)
+            subsets(s,i+1,nums)
         
         
                 
-        subsets(s,0,nums,arr)
+        subsets(s,0,nums)
         print(arr)
+
         
         return result
