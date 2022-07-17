@@ -11,7 +11,7 @@ class Solution:
                 
                 result.append(list(temp))
                 return
-                return False
+                
             if ind==n or target<0:
                 return
             prev = 0
