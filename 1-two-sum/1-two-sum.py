@@ -1,8 +1,8 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        arr = [i for i in nums]
-        arr.sort() #O(NlogN)
+        #arr = [i for i in nums]
+        #arr.sort() #O(NlogN)
         dict = {}
         
         for i in range(len(nums)):
