@@ -15,7 +15,7 @@ class Solution:
             del dict[i]
         
         keys = list(dict.keys())
-        values = list(dict.values())
+        
         keys.sort()
         for key in keys:
             count = dict[key]
