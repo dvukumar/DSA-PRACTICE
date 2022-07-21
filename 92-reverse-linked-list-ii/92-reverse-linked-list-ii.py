@@ -5,30 +5,53 @@
 #         self.next = next
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
         
-        count = 1
-        n = right - left
-        if n%2==0:
-            n = (right - left)//2
+        
+            
+        n = 0
+        if left>1:
+            flag = True
         else:
-            n = (right - left)//2 + 1
-        arr = []
+            flag = False
         temp = head
-        
-        while temp:
-            val = temp.val
-            arr.append(val)
+        while(temp):
+            n+=1
             temp = temp.next
         
-        for i in range(n):
-            arr[left-1],arr[right-1] = arr[right-1],arr[left-1]
-            left = left+1
-            right = right - 1
         
-        i = 0
-        temp = head
-        while temp:
-            temp.val = arr[i]
-            temp = temp.next
-            i+=1
-        return head
+        prevNode = None
+        curr = head
+        
+        while(left-1):
+            prevNode = curr
+            curr = curr.next
+            left-=1
+        
+        leftNode = curr
+        
+        rightNode = head
+        
+        while(right-1):
+            rightNode = rightNode.next
+            right-=1
+            
+        nextNode = rightNode.next
+        if flag:
+            prevNode.next = rightNode
+        
+        rightNode.next = None
+        
+        curr = leftNode
+        prev = nextNode
+        while(curr):
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        if flag:
+            return head
+        return rightNode
+        
+        
