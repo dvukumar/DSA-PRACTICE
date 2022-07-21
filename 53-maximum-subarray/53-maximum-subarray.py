@@ -7,8 +7,8 @@ class Solution:
         max_ = nums[0]
         res = max_
         for i in range(1,len(nums)):
-            max_ = max(nums[i],nums[i]+max_,)
+            max_ = max(nums[i],nums[i]+max_)
             #arr.append(max_)
             res = max(max_,res)
-            print(max_)
+            #print(max_)
         return res
