@@ -11,7 +11,7 @@ class Solution:
         visited = [False]*n
         queue = [source]
         while(queue):
-            curr = queue.pop(0)
+            curr = queue.pop()
             visited[curr] = True
             
             for node in adj[curr]:
