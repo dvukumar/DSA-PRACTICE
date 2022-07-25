@@ -2,28 +2,28 @@ class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         
         candidates.sort()
-        n = len(candidates)
+        # candidates = [1,1,2,5,6,7,10],target = 8
         result = []
-        
-        def find_combs(target,temp,ind):
+        def backtracking(target,ind,arr):
             
+            if ind>len(candidates) or target<0:
+                return
+            #print(arr,target)
             if target==0:
-                
-                result.append(list(temp))
+                if arr not in result:
+                    result.append(list(arr))
                 return
-                
-            if ind==n or target<0:
-                return
+
             prev = 0
             for i in range(ind,len(candidates)):
-                if candidates[i]==prev:
+                curr = candidates[i]
+                if curr==prev:
                     continue
-                
-                temp.append(candidates[i])
-                find_combs(target-candidates[i],temp,i+1)
-                temp.pop()
-                prev = candidates[i]
-            
-        
-        find_combs(target,[],0)
+                arr.append(curr)
+                backtracking(target-curr,i+1,arr)
+                arr.pop()
+                prev = curr
+            return 
+        backtracking(target,0,[])
         return result
+                
