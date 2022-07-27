@@ -20,9 +20,9 @@ class Solution:
         
         while root:
             if root.left:
-                rightMOST = rightmost(root.left);
-                nextright = root.right;
-                root.right = root.left;
+                rightMOST = rightmost(root.left)
+                nextright = root.right
+                root.right = root.left
                 root.left = None;
-                rightMOST.right = nextright;
+                rightMOST.right = nextright
             root=root.right
