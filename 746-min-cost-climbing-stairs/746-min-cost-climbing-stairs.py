@@ -1,13 +1,11 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         cost.append(0)
-        n = len(cost)
-        dp = [0]*n
+        arr = [0 for _ in range(len(cost))]
         
-        dp[0] = cost[0]
-        dp[1] = cost[1]
+        arr[0] = cost[0]
+        arr[1] = cost[1]
         
-        for i in range(2,n):
-            dp[i] = min(dp[i-2]+cost[i],dp[i-1]+cost[i])
-        
-        return dp[-1]
+        for i in range(2,len(cost)):
+            arr[i] = min(cost[i]+arr[i-1],cost[i]+arr[i-2])
+        return arr[-1]
