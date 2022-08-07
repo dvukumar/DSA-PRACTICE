@@ -3,7 +3,6 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        while(k):
-            a = nums.pop()
-            nums.insert(0,a)
-            k-=1
+        n = len(nums)
+        k = k%n
+        nums[:]= nums[n-k:]+nums[:n-k]
