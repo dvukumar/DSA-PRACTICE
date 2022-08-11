@@ -6,22 +6,39 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
-        arr = []
         curr = head
-        
-        while curr:
-            val = curr.val
-            arr.append(val)
+        duplicate = ListNode()
+        dummy = duplicate
+        prev = None
+        while(curr):
+            
+            dummy.val = curr.val
             curr = curr.next
+            dummy.next = ListNode()
+            prev = dummy
+            dummy = dummy.next
+        prev.next = None
         
-        n = len(arr)
-        flag = True
-        for i in range(len(arr)):
-            val1 = arr[i]
-            val2 = arr[n-i-1]
-            if val1==val2:
-                flag = True
-            else:
-                flag = False
-                break
-        return flag
+        curr = duplicate
+        prev = None
+        
+        while(curr):
+            temp = curr
+            curr = curr.next
+            temp.next = prev
+            prev = temp
+        
+        curr1 = head
+        curr2 = prev
+        
+        while(curr1 and curr2):
+            if curr1.val!=curr2.val:
+                return False
+            curr1 = curr1.next
+            curr2 = curr2.next
+        
+        return True
+        
+        
+            
+        
