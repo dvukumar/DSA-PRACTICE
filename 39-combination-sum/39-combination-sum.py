@@ -3,17 +3,14 @@ class Solution:
         
         n = len(candidates)
         result = []
-        
-        def find_combs(target,temp,i):
+        def CombinationSum(target,i,temp):
             if target==0:
-                result.append(list(temp))
+                result.append(temp)
                 return
-            if i==n or target<0:
+            if target<0 or i>=n:
                 return
             
-            find_combs(target-candidates[i],temp + [candidates[i]],i)
-            find_combs(target,temp ,i+1)
-        find_combs(target,[],0)
+            CombinationSum(target-candidates[i],i,temp+[candidates[i]])
+            CombinationSum(target,i+1,temp)
+        CombinationSum(target,0,[])
         return result
-            
-                
