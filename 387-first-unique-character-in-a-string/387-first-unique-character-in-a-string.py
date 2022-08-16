@@ -5,23 +5,18 @@ class Solution:
         arr = []
         
         for i in range(len(s)):
-            val = s[i]
-            if val in dict:
-                dict.pop(val)
-                arr.append(val)
+            char = s[i]
+            if char in dict:
+                dict[char].append(i)
             else:
-                if val not in arr:
-                    dict[val] = 1
+                dict[char] = [i]
         
-        keys = list(dict.keys())
-        if len(keys)==0:
-            return -1
-        key = keys[0]
+        values = list(dict.values())
         
-        for i in range(len(s)):
-            val = s[i]
-            if val==key:
-                return i
+        for arr in values:
+            if len(arr)==1:
+                return arr[0]
         return -1
+               
             
-        
+            
