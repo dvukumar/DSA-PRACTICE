@@ -11,21 +11,13 @@ class Solution:
         
         
         val = list(dict.values())
-        keys = list(dict.keys())
-        array = []
-        print(keys)
-        for key in keys:
-            val = dict[key]
-            array.append([key,val])
-        
-        array.sort(key = lambda x:x[1])
-        array.reverse()
+        val.sort()
+        val.reverse()
         
         count = 0
         n = length
-        print(array)
-        for l in array:
-            value = l[1]
+        for value in val:
+            
             n = n-value
             count+=1
             if n<=length//2:
