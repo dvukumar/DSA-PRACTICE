@@ -9,14 +9,13 @@ class Solution:
         
         dict = defaultdict(list)
         
-        def Lot(root,level):
+        def lot(root,level):
             if not root:
-                return None
-            
+                return
             dict[level].append(root.val)
-            Lot(root.left,level+1)
-            Lot(root.right,level+1)
-            
-        Lot(root,0)
-        return dict.values()
-            
+            lot(root.left,level+1)
+            lot(root.right,level+1)
+        
+        lot(root,0)
+        ans = list(dict.values())
+        return ans
