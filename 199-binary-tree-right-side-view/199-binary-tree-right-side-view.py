@@ -6,14 +6,14 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        arr = []
-        def rightSide(root,level):
+        
+        def view(root,level):
             if not root:
-                return
-            if len(arr)==level:
+                return 
+            if level==len(arr):
                 arr.append(root.val)
-            rightSide(root.right,level+1)
-            rightSide(root.left,level+1)
-        rightSide(root,0)
+            view(root.right,level+1)
+            view(root.left,level+1)
+        arr = []
+        view(root,0)
         return arr
-            
