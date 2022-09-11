@@ -24,6 +24,7 @@ class Solution:
                 if node.right:
                     q.append(node.right)
                 level.append(node.val)
-            ans.insert(0,level)
+            ans.append(level)
+        ans.reverse()
         return ans
         
