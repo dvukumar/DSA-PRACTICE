@@ -1,12 +1,23 @@
 class Solution:
     def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
         
-        arr = []
+        dict1 = {}
+        dict2 = {}
+        
         for num in nums1:
-            if len(nums2)==0:
-                break
-            if num in nums2:
-                arr.append(num)
-                nums2.remove(num)
-        return arr
+            if num in dict1:
+                dict1[num]+=1
+            else:
+                dict1[num] = 1
                 
+        for num in nums2:
+            if num in dict2:
+                dict2[num]+=1
+            else:
+                dict2[num] = 1
+        arr = []       
+        for key in dict1:
+            if key in dict2:
+                val = min(dict1[key],dict2[key])
+                arr += [key]*val
+        return arr
