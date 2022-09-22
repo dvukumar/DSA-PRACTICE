@@ -10,12 +10,14 @@ class Solution:
             else:
                 dict[i] = 1
                 
-        # keys = list(dict.keys())
-        # values = list(dict.values())
         arr = []
-        for _ in range(k):
-            maxkey = max(zip(dict.values(),dict.keys()))[1]
-            arr.append(maxkey)
-            del dict[maxkey]
+        for key in dict.keys():
+            a = [key,dict[key]]
+            arr.append(a)
         
-        return arr
+        arr.sort(key = lambda x:x[1])
+        arr.reverse()
+        res = []
+        for i in range(k):
+            res.append(arr[i][0])
+        return res
