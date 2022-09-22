@@ -1,15 +1,29 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
+        def Palindrome(s):
+            l = len(s)-1
+            f = 0
+            
+
+            while(f<=l):
+                if s[f]==s[l]:
+                    f+=1
+                    l-=1
+                else:
+                    return False
+            return True
         
-        def palindrome(s,count,i,j):
-            if count>1:
-                return False
-            if i>=j:
-                return True
-            if s[i]==s[j]:
-                return palindrome(s,count,i+1,j-1)
+        f = 0
+        l = len(s)-1
+        while(f<=l):
+            if s[f]==s[l]:
+                f+=1
+                l-=1
             else:
-                return palindrome(s,count+1,i+1,j) or palindrome(s,count+1,i,j-1)
+                s0 = s[f:l]
+                s1 = s[f+1:l+1]
+                return Palindrome(s0)or Palindrome(s1)
+        return True
+            
         
-        res = palindrome(s,0,0,len(s)-1)
-        return res
+         
