@@ -6,39 +6,32 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         
+        dummy = ListNode()
+        temp = dummy
         curr = head
-        duplicate = ListNode()
-        dummy = duplicate
-        prev = None
         while(curr):
             
-            dummy.val = curr.val
+            temp.next = ListNode(curr.val)
+            temp = temp.next
             curr = curr.next
-            dummy.next = ListNode()
-            prev = dummy
-            dummy = dummy.next
-        prev.next = None
         
-        curr = duplicate
         prev = None
-        
+        curr = dummy.next
         while(curr):
-            temp = curr
-            curr = curr.next
-            temp.next = prev
-            prev = temp
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        head2 = prev
         
         curr1 = head
-        curr2 = prev
-        
+        curr2 = head2
+        #print(curr1,curr2)
         while(curr1 and curr2):
             if curr1.val!=curr2.val:
                 return False
             curr1 = curr1.next
             curr2 = curr2.next
-        
+      
         return True
-        
-        
-            
         
