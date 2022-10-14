@@ -6,23 +6,24 @@ class Solution:
 	def isCycle(self, V: int, adj: List[List[int]]) -> bool:
 		#Code here
 		check = [0]*V
-		def detectCycle(adj,n):
-		    queue = [(n,-1)]
+		def detectCycle(adj,n,p):
+		  #  if check[n]==1:
+		  #      return True
 		    check[n] = 1
-		    while(queue):
-		        node,prev = queue.pop(0)
-		        for num in adj[node]:
-		            if check[num]==0:
-		                check[num]=1
-		                queue.append((num,node))
-		            elif prev!=num:
+		    for i in adj[n]:
+		        if check[i]==0:
+		            res = detectCycle(adj,i,n)
+		            if res==True:
 		                return True
+		        elif i!=p:
+		            return True
 		    return False
-		    
+		 
 		for i in range(V):
 		    if check[i]==0:
-		        if detectCycle(adj,i):
+		        if detectCycle(adj,i,-1):
 		            return True
+		        
 		return False
 
 
