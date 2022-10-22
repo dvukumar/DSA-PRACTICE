@@ -3,22 +3,25 @@ class Solution:
     #Function to return list containing vertices in Topological order.
     def topoSort(self, V, adj):
         # Code here
-        vis = [0]*V
+        indegree = [0]*V
+        queue = []
         res = []
-        
-        def dfs(adj,i,vis,res):
-            vis[i]=1
-            for num in adj[i]:
-                if vis[num]==0:
-                    dfs(adj,num,vis,res)
-                
-            res.append(i)
         for i in range(V):
-            if vis[i]==0:
-                dfs(adj,i,vis,res)
-        res.reverse()
-        return res
+            for num in adj[i]:
+                indegree[num]+=1
         
+        for i in range(V):
+            if indegree[i]==0:
+                queue.append(i)
+        
+        while(queue):
+            node = queue.pop(0)
+            res.append(node)
+            for num in adj[node]:
+                indegree[num]-=1
+                if indegree[num]==0:
+                    queue.append(num)
+        return res
     
 
 
